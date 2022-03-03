@@ -12,6 +12,7 @@ import { LoginService } from './services/login.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ExternalLinkComponent } from './components/external-link/external-link.component';
 import { HomeComponent } from './components/home/home.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HomeComponent } from './components/home/home.component';
     NavbarComponent,
     LoginComponent,
     ExternalLinkComponent,
-    HomeComponent
+    HomeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

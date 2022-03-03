@@ -4,6 +4,9 @@
       <strong>Entrar a la web</strong>
     </div>
   </div>
+  <div class="login-welcome" *ngIf="(this.user$ | async)?.valid">
+    <p><strong>Bienvenido, {{(this.user$ | async)?.fullname}}</strong></p>
+  </div>
   <div *ngIf="!(this.user$ | async)?.valid">
     <form [formGroup]="formGroup" class="login-form" (submit)="onSubmit()">
       <div class="column form-group">

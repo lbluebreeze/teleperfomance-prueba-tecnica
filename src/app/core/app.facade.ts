@@ -40,14 +40,16 @@ export class AppFacade {
    * Método encargado de realizar el login de un usuario a partir de sus credenciales
    * @param username Login del usuario
    * @param password Contraseña del usuario
+   * @param fn Función a ejecutar luego de un logueo exitoso
    */
-  public login(username: string, password: string): void {
+  public login(username: string, password: string, fn:() => void): void {
     this.loginService.login(username, password)
       .pipe(
         first(),
       ).subscribe((response) => {
         if (response.valid) {
           this.setUser(response);
+          fn();
         } else {
           this.sendError('El usuario no es válido');
         }

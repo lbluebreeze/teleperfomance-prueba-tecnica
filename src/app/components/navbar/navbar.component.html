@@ -1,11 +1,12 @@
 <nav class="navbar-control">
-  <ul>
+  <ul class="flex">
     <li (click)="toggleMenuControl()">Menu</li>
   </ul>
+  <ng-container *ngTemplateOutlet="userFullname"></ng-container>
 </nav>
 <nav class="navbar {{ this.hideMenuControl ? 'navbar-hideable' : '' }}">
   <ul>
-    <li *ngIf="!this.hideMenuControl" (click)="onNavigate('/login')">Login</li>
+    <li *ngIf="!this.hideMenuControl && !(this.user$ | async)?.valid" (click)="onNavigate('/login')">Login</li>
     <li (click)="onNavigate('home')">Inicio</li>
     <li (click)="onNavigate('content')">Contenido</li>
     <li (click)="onNavigate('requirements')">Requerimientos</li>
@@ -17,9 +18,12 @@
     <li (click)="onNavigate('blog')">Blog</li>
     <li (click)="onNavigate('contact')">Contacto</li>
   </ul>
+  <ng-container *ngTemplateOutlet="userFullname"></ng-container>
+</nav>
+<div (window:resize)="onResize()"></div>
+<ng-template #userFullname>
   <div class="navbar-welcome">
     <span *ngIf="!(this.user$ | async)?.valid">Bienvenido Invitado</span>
     <span *ngIf="(this.user$ | async)?.valid">{{ (this.user$ | async)?.fullname }}</span>
   </div>
-</nav>
-<div (window:resize)="onResize()"></div>
+</ng-template>

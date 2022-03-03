@@ -14,6 +14,16 @@ import { ExternalLinkComponent } from './components/external-link/external-link.
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PhraseOfTheDayComponent } from './components/phrase-of-the-day/phrase-of-the-day.component';
+import { ContentComponent } from './components/pages/content/content.component';
+import { GenericComponent } from './components/generic/generic.component';
+import { RequirementsComponent } from './components/pages/requirements/requirements.component';
+import { LanguagesComponent } from './components/pages/languages/languages.component';
+import { FrameworksComponent } from './components/pages/frameworks/frameworks.component';
+import { InstructorComponent } from './components/pages/instructor/instructor.component';
+import { ReviewsComponent } from './components/pages/reviews/reviews.component';
+import { BlogComponent } from './components/pages/blog/blog.component';
+import { ContactComponent } from './components/pages/contact/contact.component';
+import { ProjectsComponent } from './components/pages/projects/projects.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +34,17 @@ import { PhraseOfTheDayComponent } from './components/phrase-of-the-day/phrase-o
     ExternalLinkComponent,
     HomeComponent,
     FooterComponent,
-    PhraseOfTheDayComponent
+    PhraseOfTheDayComponent,
+    ContentComponent,
+    GenericComponent,
+    RequirementsComponent,
+    LanguagesComponent,
+    FrameworksComponent,
+    InstructorComponent,
+    ReviewsComponent,
+    BlogComponent,
+    ContactComponent,
+    ProjectsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,12 @@
+@use 'vars'
+
+@mixin flex-align()
+  @each $alignment in vars.$alignments
+    .#{$alignment}
+      justify-content: $alignment
+
+@mixin flex()
+  @for $i from 1 through 100
+    .flex-#{$i}
+      flex: $i 1 auto
+

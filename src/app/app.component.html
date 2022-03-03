@@ -4,14 +4,15 @@
   <br />
   <br />
   <div class="row">
-    <div class="flex-2">One</div>
-    <div class="flex-2">
+    <div class="flex-2 section-one">One</div>
+    <div class="flex-2 section-two">
       <tp-login></tp-login>
       <tp-external-link></tp-external-link>
     </div>
-    <div class="flex">Three</div>
-    <div class="flex-30">Four</div>
-    <div class="flex-2">Five</div>
+    <div class="flex section-three"></div>
+    <div class="flex-30 section-four">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="flex-2 section-five">Five</div>
   </div>
 </div>
-<router-outlet></router-outlet>

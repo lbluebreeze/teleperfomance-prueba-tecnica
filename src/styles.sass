@@ -4,6 +4,9 @@
 @include mixins.flex-align
 @include mixins.flex
 
+*
+  box-sizing: border-box
+
 body
   background-color: #f4f4f4
 
@@ -32,3 +35,7 @@ body
 a
   text-decoration: none
   color: vars.$color-primary
+
+@media (max-width: vars.$viewport-laptop)
+  .section-two, .section-three
+    display: none

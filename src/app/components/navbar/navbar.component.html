@@ -1,20 +1,25 @@
 <nav class="navbar-control">
   <ul>
-    <li (click)="toggleMenuControl()"><a href="#">Menu</a></li>
+    <li (click)="toggleMenuControl()">Menu</li>
   </ul>
 </nav>
 <nav class="navbar {{ this.hideMenuControl ? 'navbar-hideable' : '' }}">
   <ul>
-    <li><a href="#">Inicio</a></li>
-    <li><a href="#">Contenido</a></li>
-    <li><a href="#">Requerimientos</a></li>
-    <li><a href="#">Lenguajes</a></li>
-    <li><a href="#">Frameworks</a></li>
-    <li><a href="#">Proyectos</a></li>
-    <li><a href="#">El instructor</a></li>
-    <li><a href="#">Reseñas</a></li>
-    <li><a href="#">Blog</a></li>
-    <li><a href="#">Contacto</a></li>
+    <li *ngIf="!this.hideMenuControl" (click)="onNavigate('/login')">Login</li>
+    <li (click)="onNavigate('home')">Inicio</li>
+    <li (click)="onNavigate('content')">Contenido</li>
+    <li (click)="onNavigate('requirements')">Requerimientos</li>
+    <li (click)="onNavigate('languages')">Lenguajes</li>
+    <li (click)="onNavigate('frameworks')">Frameworks</li>
+    <li (click)="onNavigate('proyects')">Proyectos</li>
+    <li (click)="onNavigate('instructor')">El instructor</li>
+    <li (click)="onNavigate('reviews')">Reseñas</li>
+    <li (click)="onNavigate('blog')">Blog</li>
+    <li (click)="onNavigate('contact')">Contacto</li>
   </ul>
+  <div class="navbar-welcome">
+    <span *ngIf="!(this.user$ | async)?.valid">Bienvenido Invitado</span>
+    <span *ngIf="(this.user$ | async)?.valid">{{ (this.user$ | async)?.fullname }}</span>
+  </div>
 </nav>
 <div (window:resize)="onResize()"></div>

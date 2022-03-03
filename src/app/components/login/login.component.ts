@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { AppFacade } from 'src/app/core/app.facade';
+import { UserModel } from 'src/app/models/user.model';
 
 @Component({
   selector: 'tp-login',
@@ -16,6 +18,10 @@ export class LoginComponent implements OnInit {
    * Tracks the value and validity state of a group of `FormControl` instances.
    */
   public readonly formGroup: FormGroup
+  /**
+   * Observable con la información del usuario
+   */
+  public readonly user$ = new Observable<UserModel>();
 
   /**
    * Crea una nueva instancia de @see AppComponent
@@ -26,6 +32,8 @@ export class LoginComponent implements OnInit {
       name: ['', Validators.required],
       pass: ['', Validators.required],
     });
+
+    this.user$ = this.facade.user$();
   }
 
   /**

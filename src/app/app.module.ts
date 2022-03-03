@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ExternalLinkComponent } from './components/external-link/external-link.component';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { PhraseOfTheDayComponent } from './components/phrase-of-the-day/phrase-of-the-day.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FooterComponent } from './components/footer/footer.component';
     LoginComponent,
     ExternalLinkComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    PhraseOfTheDayComponent
   ],
   imports: [
     BrowserModule,

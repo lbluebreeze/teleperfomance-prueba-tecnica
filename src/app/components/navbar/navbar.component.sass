@@ -1,0 +1,46 @@
+@use './src/assets/sass/vars'
+
+.navbar
+  display: flex
+  &, &-control
+    background-color: vars.$color-default
+    & ul
+      display: flex
+      color: vars.$color-inverted
+      margin: 0 auto
+      padding: 0
+      list-style-type: none
+      & > li
+        padding: 1em 2em
+        border-right: vars.$color-disabled solid thin
+        &:last-child
+          border-right: 0
+        & > a
+          text-decoration: none
+          color: vars.$color-inverted
+  &-control
+    display: none
+
+@media (max-width: vars.$viewport-default)
+  .navbar
+    &, &-control
+      & ul > li
+        padding: 1em .5em
+
+@media (max-width: vars.$viewport-laptop)
+  .navbar
+    display: block
+    width: 50vw
+    & ul
+      display: block
+      & > li
+        border-right: 0
+        border-bottom: vars.$color-disabled solid thin
+        &:last-child
+          border-bottom: 0
+    &-hideable
+      display: none
+    &-control
+      display: flex
+      & > ul
+        margin: 0

@@ -1,0 +1,20 @@
+<nav class="navbar-control">
+  <ul>
+    <li (click)="toggleMenuControl()"><a href="#">Menu</a></li>
+  </ul>
+</nav>
+<nav class="navbar {{ this.hideMenuControl ? 'navbar-hideable' : '' }}">
+  <ul>
+    <li><a href="#">Inicio</a></li>
+    <li><a href="#">Contenido</a></li>
+    <li><a href="#">Requerimientos</a></li>
+    <li><a href="#">Lenguajes</a></li>
+    <li><a href="#">Frameworks</a></li>
+    <li><a href="#">Proyectos</a></li>
+    <li><a href="#">El instructor</a></li>
+    <li><a href="#">Reseñas</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+</nav>
+<div (window:resize)="onResize()"></div>

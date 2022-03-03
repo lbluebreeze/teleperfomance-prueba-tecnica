@@ -1,0 +1,31 @@
+<div class="login-wrapper column">
+  <div>
+    <div class="login-title">
+      <strong>Entrar a la web</strong>
+    </div>
+  </div>
+  <div>
+    <form [formGroup]="formGroup" class="login-form" (submit)="onSubmit()">
+      <div class="column form-group">
+        <label for="username" [class]="this.formGroup.controls.name.touched && this.formGroup.controls.name.invalid ? 'has-error' : ''">Usuario:</label>
+        <input type="text" formControlName="name" />
+      </div>
+      <div class="column form-group">
+        <label for="pass" [class]="this.formGroup.controls.pass.touched && this.formGroup.controls.pass.invalid ? 'has-error' : ''">Contrase&ntilde;a:</label>
+        <input type="password" formControlName="pass" />
+      </div>
+      <div class="column form-group">
+        <button class="button form-submit">Entrar</button>
+      </div>
+    </form>
+  </div>
+  <div>
+    <div class="login-links">
+      <ul>
+        <li><a href="www.google.com">Zona de Alumnos</a></li>
+        <li><a href="www.google.com">Zona del Profesor</a></li>
+        <li><a href="www.google.com">Acceso a calificaciones</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

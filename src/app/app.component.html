@@ -1,18 +1,20 @@
-<div class="wrapper">
+<div>
   <tp-header></tp-header>
   <tp-navbar></tp-navbar>
   <br />
   <br />
-  <div class="row">
-    <div class="flex-2 section-one">One</div>
+  <div class="wrapper">
+    <div class="flex-2 section-one"></div>
     <div class="flex-2 section-two">
       <tp-login></tp-login>
       <tp-external-link></tp-external-link>
     </div>
     <div class="flex section-three"></div>
     <div class="flex-30 section-four">
-      <router-outlet></router-outlet>
+      <div class="wrapper-site">
+        <router-outlet></router-outlet>
+      </div>
     </div>
-    <div class="flex-2 section-five">Five</div>
+    <div class="flex-2 section-five"></div>
   </div>
 </div>

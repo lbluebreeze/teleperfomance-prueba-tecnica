@@ -11,6 +11,7 @@ import { AppState } from './core/app.state';
 import { LoginService } from './services/login.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ExternalLinkComponent } from './components/external-link/external-link.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ExternalLinkComponent } from './components/external-link/external-link.
     HeaderComponent,
     NavbarComponent,
     LoginComponent,
-    ExternalLinkComponent
+    ExternalLinkComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

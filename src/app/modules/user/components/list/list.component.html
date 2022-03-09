@@ -1,1 +1,33 @@
 <p>list works!</p>
+<div *ngIf="!users.length else table">
+  Cargando usuarios
+</div>
+<ng-template #table>
+  <table mat-table [fixedLayout]="true" [dataSource]="users" class="mat-elevation-z2">
+    <mat-text-column headerText="ID" name="id"></mat-text-column>
+    <mat-text-column headerText="Login" name="username"></mat-text-column>
+    <mat-text-column headerText="Nombre completo" name="fullname"></mat-text-column>
+    <mat-text-column headerText="Teléfono" name="phone"></mat-text-column>
+
+    <ng-container matColumnDef="creationDate">
+      <th mat-header-cell *matHeaderCellDef> Fecha de creación </th>
+      <td mat-cell *matCellDef="let user">{{ user.creationDate | date }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="idCreatorUser">
+      <th mat-header-cell *matHeaderCellDef> Opciones </th>
+      <td mat-cell *matCellDef="let user">
+        <button mat-icon-button class="button-primary" matTooltip="Editar" (click)="onEdit(user)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button class="button-danger" matTooltip="Eliminar" (click)="onDelete(user)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+  </table>
+</ng-template>
+<pre>{{ users | json }}</pre>

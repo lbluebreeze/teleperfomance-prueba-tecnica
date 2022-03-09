@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { ErrorModel } from '../models/error.model';
-import { UserModel } from '../models/user.model';
+import { UserDto } from '../models/user.dto';
 
 /**
  * Clase que persiste información durante la sesión de la aplicación
@@ -20,7 +20,7 @@ export class AppState {
   /**
    * Behavior Subject de User
    */
-  private readonly bsUser = new BehaviorSubject<UserModel>({valid: false});
+  private readonly bsUser = new BehaviorSubject<UserDto>({});
   /**
    * Observable con la información del usuario
    */
@@ -30,7 +30,7 @@ export class AppState {
    * Método encargado de almacenar un usuario en el estado
    * @param data Información del usuario
    */
-  public setUser(data: UserModel): void {
+  public setUser(data: UserDto): void {
     this.bsUser.next(data);
   }
 

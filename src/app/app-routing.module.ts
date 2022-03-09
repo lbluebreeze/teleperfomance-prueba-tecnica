@@ -11,6 +11,7 @@ import { LanguagesComponent } from './components/pages/languages/languages.compo
 import { ProjectsComponent } from './components/pages/projects/projects.component';
 import { RequirementsComponent } from './components/pages/requirements/requirements.component';
 import { ReviewsComponent } from './components/pages/reviews/reviews.component';
+import { UserComponent } from './modules/user/user.component';
 
 /**
  * Rutas disponibles en la aplicacion
@@ -59,6 +60,10 @@ const routes: Routes = [
   {
     path: 'contact',
     component: ContactComponent,
+  },
+  {
+    path: 'user',
+    loadChildren: () => import('./modules/user/user.module').then(x => x.UserModule),
   }
 ];
 

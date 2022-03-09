@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AppFacade } from 'src/app/core/app.facade';
-import { UserModel } from 'src/app/models/user.model';
+import { UserDto } from 'src/app/models/user.dto';
 
 @Component({
   selector: 'tp-login',
@@ -22,11 +22,11 @@ export class LoginComponent implements OnInit {
   /**
    * Tracks the value and validity state of a group of `FormControl` instances.
    */
-  public readonly formGroup: FormGroup
+  public readonly formGroup: FormGroup;
   /**
    * Observable con la información del usuario
    */
-  public readonly user$ = new Observable<UserModel>();
+  public readonly user$ = new Observable<UserDto>();
 
   /**
    * Crea una nueva instancia de @see AppComponent
@@ -52,8 +52,9 @@ export class LoginComponent implements OnInit {
   public onSubmit(): void {
     this.formGroup.markAllAsTouched();
 
-    if (this.formGroup.invalid)
+    if (this.formGroup.invalid) {
       return;
+    }
 
     const form = this.formGroup.value;
 

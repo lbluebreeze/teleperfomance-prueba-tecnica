@@ -24,6 +24,8 @@ import { ReviewsComponent } from './components/pages/reviews/reviews.component';
 import { BlogComponent } from './components/pages/blog/blog.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { ProjectsComponent } from './components/pages/projects/projects.component';
+import { UserApiService } from './services/user/user.api.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -50,11 +52,13 @@ import { ProjectsComponent } from './components/pages/projects/projects.componen
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [
     AppFacade,
     AppState,
-    LoginService
+    LoginService,
+    UserApiService,
   ],
   bootstrap: [AppComponent]
 })

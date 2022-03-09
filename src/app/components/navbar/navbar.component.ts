@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AppFacade } from 'src/app/core/app.facade';
-import { UserModel } from 'src/app/models/user.model';
+import { UserDto } from 'src/app/models/user.dto';
 
 @Component({
   selector: 'tp-navbar',
@@ -21,7 +21,7 @@ export class NavbarComponent {
   /**
    * Observable con la información del usuario
    */
-  public readonly user$ = new Observable<UserModel>();
+  public readonly user$ = new Observable<UserDto>();
   /**
    * Bandera que indica si se debe ocultar el control de menú lateral
    */
@@ -41,7 +41,7 @@ export class NavbarComponent {
    * Método encargado de alternar la bandera de control de menú @see hideMenuControl
    */
   public toggleMenuControl(): void {
-    this.hideMenuControl = !this.hideMenuControl
+    this.hideMenuControl = !this.hideMenuControl;
   }
 
   /**

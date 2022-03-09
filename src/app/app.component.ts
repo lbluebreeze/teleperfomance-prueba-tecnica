@@ -32,7 +32,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.facade.error$()
       .pipe(
-        filter((response) => response.message != undefined),
+        filter((response) => response.message !== undefined),
         tap((response) => {
           alert(response.message);
         }),

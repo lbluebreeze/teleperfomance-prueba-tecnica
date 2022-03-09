@@ -51,6 +51,7 @@ export class AppFacade {
    * @param fn Función a ejecutar luego de un logueo exitoso
    */
   public login(username: string, password: string, fn: () => void): void {
+    this.setLoading(true);
     this.userService.login(username, password).pipe(
       first(),
     ).subscribe(
@@ -63,7 +64,8 @@ export class AppFacade {
           this.sendError('No se encontró un usuario con las credenciales especificadas');
         }
       },
-      () => this.sendError('Hubo un problema al autenticar el usuario')
+      () => this.sendError('Hubo un problema al autenticar el usuario'),
+      () => this.setLoading(false),
     );
   }
 

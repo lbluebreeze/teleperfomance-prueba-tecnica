@@ -28,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { AuthGuard } from './shared/guards/auth.guard';
     HttpClientModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    MatProgressBarModule,
   ],
   providers: [
     AppFacade,

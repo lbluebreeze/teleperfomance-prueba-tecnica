@@ -1,3 +1,4 @@
+<mat-progress-bar mode="indeterminate" *ngIf="facade.loading$() | async"></mat-progress-bar>
 <div class="login-wrapper column">
   <div *ngIf="!(this.user$ | async)?.valid">
     <div class="login-title">

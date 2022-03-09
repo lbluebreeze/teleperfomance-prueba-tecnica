@@ -12,13 +12,13 @@ import { UserDto } from 'src/app/models/user.dto';
 })
 export class LoginComponent implements OnInit {
   /**
-   * Clase que administra la comunicación entre los servicios y el estado
-   */
-  private readonly facade: AppFacade;
-  /**
    * A service that provides navigation among views and URL manipulation capabilities.
    */
   private readonly router: Router;
+  /**
+   * Clase que administra la comunicación entre los servicios y el estado
+   */
+  public readonly facade: AppFacade;
   /**
    * Tracks the value and validity state of a group of `FormControl` instances.
    */

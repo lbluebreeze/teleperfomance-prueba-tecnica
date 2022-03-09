@@ -26,6 +26,7 @@ import { ContactComponent } from './components/pages/contact/contact.component';
 import { ProjectsComponent } from './components/pages/projects/projects.component';
 import { UserApiService } from './services/user/user.api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     AppFacade,

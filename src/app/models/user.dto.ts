@@ -18,6 +18,10 @@ export interface UserDto extends IDtoBase {
    */
   fullname?: string;
   /**
+   * Teléfono del usuario
+   */
+  phone?: string;
+  /**
    * Bandera que indica si el usuario es válido
    */
   valid?: boolean;

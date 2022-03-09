@@ -10,13 +10,13 @@ import { AppFacade } from './core/app.facade';
 })
 export class AppComponent implements OnInit, OnDestroy {
   /**
-   * Clase que administra la comunicación entre los servicios y el estado
-   */
-  private readonly facade: AppFacade;
-  /**
    * Bandera para la desuscripción de observables
    */
   private readonly destroy$ = new Subject<boolean>();
+  /**
+   * Clase que administra la comunicación entre los servicios y el estado
+   */
+  public readonly facade: AppFacade;
 
   /**
    * Crea una nueva instancia de @see AppComponent

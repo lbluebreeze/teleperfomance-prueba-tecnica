@@ -1,8 +1,10 @@
-<p>list works!</p>
-<div *ngIf="!users.length else table">
+<div *ngIf="facade.loading$() | async else table">
   Cargando usuarios
 </div>
 <ng-template #table>
+  <div class="row row-reverse">
+    <button mat-button class="button button-add bg-color-primary color-inverted" (click)="onAdd()">Crear usuario</button>
+  </div>
   <table mat-table [fixedLayout]="true" [dataSource]="users" class="mat-elevation-z2">
     <mat-text-column headerText="ID" name="id"></mat-text-column>
     <mat-text-column headerText="Login" name="username"></mat-text-column>
@@ -17,10 +19,10 @@
     <ng-container matColumnDef="idCreatorUser">
       <th mat-header-cell *matHeaderCellDef> Opciones </th>
       <td mat-cell *matCellDef="let user">
-        <button mat-icon-button class="button-primary" matTooltip="Editar" (click)="onEdit(user)">
+        <button mat-icon-button class="color-primary" matTooltip="Editar" (click)="onEdit(user)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button class="button-danger" matTooltip="Eliminar" (click)="onDelete(user)">
+        <button mat-icon-button class="color-danger" matTooltip="Eliminar" (click)="onDelete(user)">
           <mat-icon>delete</mat-icon>
         </button>
       </td>
@@ -30,4 +32,3 @@
     <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
   </table>
 </ng-template>
-<pre>{{ users | json }}</pre>

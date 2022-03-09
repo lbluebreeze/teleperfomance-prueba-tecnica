@@ -10,6 +10,14 @@ import { UserDto } from '../models/user.dto';
 @Injectable()
 export class AppState {
   /**
+   * Behavior Subject de Loading
+   */
+  private readonly bsLoading = new BehaviorSubject<boolean>(false);
+  /**
+   * Observable con una bandera que indica si se está esperando una respuesta de un servicio
+   */
+  public readonly loading$ = this.bsLoading.asObservable();
+  /**
    * Behavior Subject de Error
    */
   private readonly bsError = new BehaviorSubject<ErrorModel>({});
@@ -25,6 +33,21 @@ export class AppState {
    * Observable con la información del usuario
    */
   public readonly user$ = this.bsUser.asObservable();
+
+  /**
+   * Método encargado configurar la bandera isLoading
+   * @param state Estado de la bandera
+   */
+  public setLoading(state: boolean): void {
+    this.bsLoading.next(state);
+  }
+
+  /**
+   * Método encargado de obtener el usuario almacenado en el estado
+   */
+  public get user(): UserDto {
+    return this.bsUser.value;
+  }
 
   /**
    * Método encargado de almacenar un usuario en el estado

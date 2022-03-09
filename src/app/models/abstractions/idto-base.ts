@@ -13,7 +13,7 @@ export interface IDtoBase {
   /**
    * Estado del registro
    */
-  state?: number;
+  state?: boolean;
   /**
    * Fecha de creación del registro
    */

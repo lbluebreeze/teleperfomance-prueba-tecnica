@@ -1,0 +1,53 @@
+<mat-progress-bar mode="indeterminate" *ngIf="facade.loading$() | async"></mat-progress-bar>
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <!-- Login -->
+    <mat-form-field class="flex mr-xs ml-xs">
+      <mat-label>Login</mat-label>
+      <input matInput formControlName="username" maxlength="128" autocomplete="off" />
+      <mat-error *ngIf="formGroup.controls.username.touched && formGroup.controls.username.errors?.required">El login es obligatorio</mat-error>
+      <mat-error *ngIf="formGroup.controls.username.touched && formGroup.controls.username.errors?.maxlength">El campo supera el máximo de {{ formGroup.controls.username.errors?.maxlength.requiredLength }} caracteres</mat-error>
+      <mat-error *ngIf="formGroup.controls.username.touched && formGroup.controls.username.errors?.usernameAlreadyExists">El usuario especificado ya existe</mat-error>
+    </mat-form-field>
+    <!-- Contraseña -->
+    <mat-form-field class="flex mr-xs ml-xs">
+      <mat-label>Contraseña</mat-label>
+      <input matInput type="password" formControlName="password" maxlength="256" />
+      <mat-error *ngIf="formGroup.controls.password.touched && formGroup.controls.password.errors?.required">La contraseña es obligatoria</mat-error>
+      <mat-error *ngIf="formGroup.controls.password.touched && formGroup.controls.password.errors?.minlength">La contraseña debe ser de mínimo {{ formGroup.controls.password.errors?.minlength.requiredLength }} caracteres</mat-error>
+      <mat-error *ngIf="formGroup.controls.password.touched && formGroup.controls.password.errors?.maxlength">El campo supera el máximo de {{ formGroup.controls.password.errors?.maxlength.requiredLength }} caracteres</mat-error>
+    </mat-form-field>
+    <!-- Confirmar contraseña -->
+    <mat-form-field class="flex mr-xs ml-xs">
+      <mat-label>Confirmar contraseña</mat-label>
+      <input matInput type="password" formControlName="confirmPassword" maxlength="256" />
+      <mat-error *ngIf="formGroup.controls.confirmPassword.touched && formGroup.controls.confirmPassword.errors?.required">Por favor confirme la contraseña</mat-error>
+      <mat-error *ngIf="formGroup.controls.confirmPassword.touched && formGroup.controls.confirmPassword.errors?.minlength">La contraseña debe ser de mínimo {{ formGroup.controls.confirmPassword.errors?.minlength.requiredLength }} caracteres</mat-error>
+      <mat-error *ngIf="formGroup.controls.confirmPassword.touched && formGroup.controls.confirmPassword.errors?.maxlength">El campo supera el máximo de {{ formGroup.controls.confirmPassword.errors?.maxlength.requiredLength }} caracteres</mat-error>
+    </mat-form-field>
+    <!-- Nombre completo -->
+    <mat-form-field class="flex mr-xs ml-xs">
+      <mat-label>Nombre completo</mat-label>
+      <input matInput formControlName="fullname" maxlength="256" autocomplete="off" />
+      <mat-error *ngIf="formGroup.controls.fullname.touched && formGroup.controls.fullname.errors?.required">El nombre completo del usuario es obligatorio</mat-error>
+      <mat-error *ngIf="formGroup.controls.fullname.touched && formGroup.controls.fullname.errors?.maxlength">El campo supera el máximo de {{ formGroup.controls.fullname.errors?.maxlength.requiredLength }} caracteres</mat-error>
+    </mat-form-field>
+    <!-- Teléfono -->
+    <mat-form-field class="flex mr-xs ml-xs">
+      <mat-label>Teléfono</mat-label>
+      <input matInput formControlName="phone" maxlength="32" autocomplete="off" />
+      <mat-error *ngIf="formGroup.controls.phone.touched && formGroup.controls.phone.errors?.maxlength">El campo supera el máximo de {{ formGroup.controls.phone.errors?.maxlength.requiredLength }} caracteres</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="row div-errors" *ngIf="formGroup.dirty && formGroup.errors">
+    <div class="flex text-center text-danger color-danger" *ngIf="formGroup.errors?.unConfirmedPassword">Las contraseñas no coinciden</div>
+  </div>
+  <div class="row">
+    <div class="flex">
+      <tp-hobby (hobbySelection)="onSelectedHobbies($event)"></tp-hobby>
+    </div>
+  </div>
+  <div class="row row-reverse mt-xs mb-xs">
+    <button mat-button type="submit" class="bg-color-primary color-inverted" [disabled]="formGroup.invalid"><mat-icon>save</mat-icon> Guardar</button>
+  </div>
+</form>

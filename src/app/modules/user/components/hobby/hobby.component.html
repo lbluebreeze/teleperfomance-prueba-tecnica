@@ -1,0 +1,21 @@
+<p><strong>Hobbies</strong></p>
+<form [formGroup]="formGroup" (ngSubmit)="addHobby()">
+  <div class="row">
+    <!-- Escriba un hobby y oprima enter -->
+    <mat-form-field class="flex mr-xs ml-xs">
+      <mat-label>Escriba un hobby y oprima enter</mat-label>
+      <input matInput formControlName="hobby" maxlength="256" autocomplete="off" (blur)="addHobby()" />
+      <mat-error *ngIf="formGroup.controls.hobby.touched && formGroup.controls.hobby.errors?.maxlength">El campo supera el máximo de 256 caracteres</mat-error>
+    </mat-form-field>
+  </div>
+</form>
+<mat-selection-list>
+  <mat-list-option
+    *ngFor="let userHobby of userHobbies"
+    [value]="userHobby.hobby?.id"
+    [selected]="userHobby.hobby?.selected"
+    (click)="toggleHobby(userHobby)"
+  >
+    {{ userHobby.hobby?.name }}
+  </mat-list-option>
+</mat-selection-list>

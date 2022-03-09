@@ -9,7 +9,7 @@ import { UserFacade } from '../../facade/user.facade';
  * Componente encargado de listar los usuarios registrados
  */
 @Component({
-  selector: 'tp-list',
+  selector: 'tp-user-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.sass']
 })
@@ -68,13 +68,21 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Método llamado por el botón crear.
+   * Redirecciona hacia el componente de creación de usuarios
+   */
+  public onAdd(): void {
+    this.router.navigate(['../add'], { relativeTo: this.activatedRoute });
+  }
+
+  /**
    * Método llamado por el botón editar de la tabla.
    * Asigna el usuario en el estado y redirecciona al componente de edición
    * @param data Información del usuario
    */
   public onEdit(data: UserDto): void {
     this.facade.setUser(data);
-    this.router.navigate(['/edit'], { relativeTo: this.activatedRoute });
+    this.router.navigate(['../edit'], { relativeTo: this.activatedRoute });
   }
 
   /**

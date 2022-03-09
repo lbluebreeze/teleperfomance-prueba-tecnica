@@ -4,6 +4,7 @@ import { UserDto } from 'src/app/models/user.dto';
 import { UserApiService } from 'src/app/services/user/user.api.service';
 import { UserState } from '../state/user.state';
 import { AppFacade } from 'src/app/core/app.facade';
+import { HobbyApiService } from 'src/app/services/hobby/hobby.api.service';
 
 /**
  * Clase que administra la comunicación entre los servicios y el estado
@@ -23,6 +24,14 @@ export class UserFacade implements OnDestroy {
    */
   private readonly service: UserApiService;
   /**
+   * Servicio encargado interactuar con la api de usuarios del microservicio
+   */
+  private readonly hobbyService: HobbyApiService;
+  /**
+   * Observable con una bandera que indica si se está esperando una respuesta de un servicio
+   */
+  public readonly loading$ = () => this.appFacade.loading$();
+  /**
    * Observable con una lista de usuarios
    */
   public readonly users$ = () => this.state.users$;
@@ -30,14 +39,19 @@ export class UserFacade implements OnDestroy {
    * Observable con la información de un usuario
    */
   public readonly user$ = () => this.state.user$;
+  /**
+   * Observable con una lista de hobbies
+   */
+  public readonly hobbies$ = () => this.state.hobbies$;
 
   /**
    * Crea una nueva instancia de @see UserFacade
    */
-  public constructor(state: UserState, appFacade: AppFacade, service: UserApiService) {
+  public constructor(state: UserState, appFacade: AppFacade, service: UserApiService, hobbyService: HobbyApiService) {
     this.state = state;
     this.appFacade = appFacade;
     this.service = service;
+    this.hobbyService = hobbyService;
   }
 
   /**
@@ -51,6 +65,7 @@ export class UserFacade implements OnDestroy {
    * Método encargado de obtener todos los usuarios
    */
   public all(): void {
+    this.appFacade.setLoading(true);
     this.service.all()
       .pipe(first())
       .subscribe(
@@ -58,6 +73,75 @@ export class UserFacade implements OnDestroy {
           this.setUsers(response);
         },
         () => this.appFacade.sendError('Hubo un problema al consultar los usuarios'),
+        () => this.appFacade.setLoading(false)
+      );
+  }
+
+  /**
+   * Método encargado de crear un usuario
+   * @param data Información del usuario a crear
+   */
+  public create(data: UserDto, fn: () => void): void {
+    data.idCreatorUser = this.appFacade.user().id;
+    data.createdDate = new Date();
+    data.state = true;
+
+    data.userHobbies = data.userHobbies?.map((userHobby) => {
+      if ((userHobby.idHobby || 0) > 0) {
+        userHobby.hobby = undefined;
+      } else {
+        userHobby.hobby = {
+          ...userHobby.hobby,
+          idCreatorUser: data.idCreatorUser,
+          createdDate: new Date(),
+          state: true,
+        };
+      }
+
+      userHobby = {
+        ...userHobby,
+        idCreatorUser: userHobby.idCreatorUser ?? data.idCreatorUser,
+        createdDate: userHobby.createdDate ?? new Date(),
+        state: true
+      };
+
+      return userHobby;
+    });
+
+    this.appFacade.setLoading(true);
+    this.service.post(data)
+      .pipe(first())
+      .subscribe(
+        (response) => {
+          if (response > 0) {
+            fn();
+          } else {
+            this.appFacade.sendError('Hubo un problema al crear el usuario');
+          }
+        },
+        () => this.appFacade.sendError('Hubo un problema al crear el usuario'),
+        () => this.appFacade.setLoading(false)
+      );
+  }
+
+  /**
+   * Método encargado de actualizar un usuario
+   * @param data Información del usuario a actualizar
+   */
+  public update(data: UserDto, fn: () => void): void {
+    this.appFacade.setLoading(true);
+    this.service.put(data)
+      .pipe(first())
+      .subscribe(
+        (response) => {
+          if (response) {
+            fn();
+          } else {
+            this.appFacade.sendError('Hubo un problema al actualizar el usuario');
+          }
+        },
+        () => this.appFacade.sendError('Hubo un problema al actualizar el usuario'),
+        () => this.appFacade.setLoading(false)
       );
   }
 
@@ -79,6 +163,18 @@ export class UserFacade implements OnDestroy {
       .subscribe(
         (users) => this.state.setUsers(users),
         () => this.appFacade.sendError('Hubo un problema al eliminar el usuario'),
+      );
+  }
+
+  /**
+   * Método encargado de obtener los hobbies
+   */
+  public allHobbies(): void {
+    this.hobbyService.all()
+      .pipe(first())
+      .subscribe(
+        (response) => this.state.setHobbies(response),
+        () => this.appFacade.sendError('Hubo un problema al obtener los hobbies'),
       );
   }
 

@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 
 import { ErrorModel } from '../models/error.model';
-import { UserModel } from '../models/user.model';
-import { LoginService } from '../services/login.service';
 import { AppState } from './app.state';
 import { first } from 'rxjs/operators';
 import { UserApiService } from '../services/user/user.api.service';
@@ -18,13 +16,13 @@ export class AppFacade {
    */
   private readonly state: AppState;
   /**
-   * Servicio encargado de la validación y autenticación de usuarios
-   */
-  private readonly loginService: LoginService;
-  /**
    * Servicio encargado interactuar con la api de usuarios del microservicio
    */
   private readonly userService: UserApiService;
+  /**
+   * Observable con una bandera que indica si se está esperando una respuesta de un servicio
+   */
+  public readonly loading$ = () => this.state.loading$;
   /**
    * Observable con la información del usuario
    */
@@ -33,13 +31,16 @@ export class AppFacade {
    * Observable con la información de un error
    */
   public readonly error$ = () => this.state.error$;
+  /**
+   * Información del usuario logueado
+   */
+  public readonly user = () => this.state.user;
 
   /**
    * Crea una nueva instancia de @see AppFacade
    */
-  public constructor(state: AppState, loginService: LoginService, userService: UserApiService) {
+  public constructor(state: AppState, userService: UserApiService) {
     this.state = state;
-    this.loginService = loginService;
     this.userService = userService;
   }
 
@@ -83,6 +84,14 @@ export class AppFacade {
       message
     };
     this.state.setError(error);
+  }
+
+  /**
+   * Método encargado configurar la bandera isLoading
+   * @param state Estado de la bandera
+   */
+  public setLoading(state: boolean): void {
+    this.state.setLoading(state);
   }
 }
 

@@ -17,14 +17,15 @@
         <label for="pass" [class]="this.formGroup.controls.pass.touched && this.formGroup.controls.pass.invalid ? 'has-error' : ''">Contrase&ntilde;a:</label>
         <input type="password" formControlName="pass" />
       </div>
-      <div class="column form-group">
-        <button class="button form-submit">Entrar</button>
+      <div class="row center form-group">
+        <button mat-button class="button form-submit bg-color-primary color-inverted">Entrar</button>
       </div>
     </form>
   </div>
   <div>
     <div class="login-links">
       <ul>
+        <li *ngIf="(user$ | async)?.valid"><a href="#" [routerLink]="['/user']">Administrar usuarios</a></li>
         <li><a href="https://www.google.com">Zona de Alumnos</a></li>
         <li><a href="https://www.google.com">Zona del Profesor</a></li>
         <li><a href="https://www.google.com">Acceso a calificaciones</a></li>

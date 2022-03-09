@@ -7,6 +7,7 @@
 <nav class="navbar {{ this.hideMenuControl ? 'navbar-hideable' : '' }}">
   <ul>
     <li *ngIf="!this.hideMenuControl && !(this.user$ | async)?.valid" (click)="onNavigate('/login')">Login</li>
+    <li *ngIf="!this.hideMenuControl && (this.user$ | async)?.valid" (click)="onNavigate('/user')">Administrar usuarios</li>
     <li (click)="onNavigate('')">Inicio</li>
     <li (click)="onNavigate('content')">Contenido</li>
     <li (click)="onNavigate('requirements')">Requerimientos</li>

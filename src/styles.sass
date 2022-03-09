@@ -16,12 +16,51 @@ body
 
 .row
   flex-direction: row
+  &-reverse
+    flex-direction: row-reverse
 
 .column
   flex-direction: column
 
-.flex
-  flex: 1 1 auto
+.text-center
+  text-align: center
+
+.mt-xs
+  margin-top: .5em
+.mr-xs
+  margin-right: .5em
+.ml-xs
+  margin-left: .5em
+.mb-xs
+  margin-bottom: .5em
+
+.bg-color
+  &-default
+    background-color: vars.$color-default
+  &-inverted
+    background-color: vars.$color-inverted
+  &-primary
+    background-color: vars.$color-primary
+  &-danger
+    background-color: vars.$color-danger
+  &-warning
+    background-color: vars.$color-warning
+  &-success
+    background-color: vars.$color-success
+
+.color
+  &-default
+    color: vars.$color-default
+  &-inverted
+    color: vars.$color-inverted
+  &-primary
+    color: vars.$color-primary
+  &-danger
+    color: vars.$color-danger
+  &-warning
+    color: vars.$color-warning
+  &-success
+    color: vars.$color-success
 
 .button
   cursor: pointer
@@ -29,15 +68,7 @@ body
   margin: 0 auto
   border: 0
   border-radius: 4px
-  &-primary
-    color: vars.$color-primary
-  &-danger
-    color: vars.$color-danger
 
 a
   text-decoration: none
   color: vars.$color-primary
-
-@media (max-width: vars.$viewport-laptop)
-  .section-two, .section-three
-    display: none

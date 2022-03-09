@@ -8,7 +8,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { AppFacade } from './core/app.facade';
 import { AppState } from './core/app.state';
-import { LoginService } from './services/login.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ExternalLinkComponent } from './components/external-link/external-link.component';
 import { HomeComponent } from './components/home/home.component';
@@ -27,6 +26,8 @@ import { ProjectsComponent } from './components/pages/projects/projects.componen
 import { UserApiService } from './services/user/user.api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -55,12 +56,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatButtonModule,
   ],
   providers: [
     AppFacade,
     AppState,
-    LoginService,
     UserApiService,
+    AuthGuard,
   ],
   bootstrap: [AppComponent]
 })

@@ -12,4 +12,9 @@ export interface HobbyDto extends IDtoBase {
    * Descripción del hobby
    */
   description?: string;
+
+  /**
+   * Bandera que indica si el hobby debe estar seleccionado
+   */
+  selected?: boolean;
 }

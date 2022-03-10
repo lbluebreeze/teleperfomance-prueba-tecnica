@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserHobbyDto } from 'src/app/models/user-hobby.dto';
+import { environment } from 'src/environments/environment';
 import { BaseApiService } from '../base/base.api.service';
 
 /**
@@ -13,6 +14,6 @@ export class UserHobbyApiService extends BaseApiService<UserHobbyDto> {
    * Crea una nueva instancia de @see UserHobbyApiService
    */
   public constructor(httpClient: HttpClient) {
-    super(httpClient, `http://localhost:18316/api`, 'UserHobby');
+    super(httpClient, environment.userApi, 'UserHobby');
   }
 }

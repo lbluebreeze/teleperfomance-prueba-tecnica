@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserDto } from 'src/app/models/user.dto';
+import { environment } from 'src/environments/environment';
 import { BaseApiService } from '../base/base.api.service';
 
 /**
@@ -14,7 +15,7 @@ export class UserApiService extends BaseApiService<UserDto> {
    * Crea una nueva instancia de @see UserApiService
    */
   public constructor(httpClient: HttpClient) {
-    super(httpClient, `http://localhost:18316/api`, 'User');
+    super(httpClient, environment.userApi, 'User');
   }
 
   /**

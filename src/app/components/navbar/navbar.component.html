@@ -25,6 +25,6 @@
 <ng-template #userFullname>
   <div class="navbar-welcome">
     <span *ngIf="!(this.user$ | async)?.valid">Bienvenido Invitado</span>
-    <span *ngIf="(this.user$ | async)?.valid">{{ (this.user$ | async)?.fullname }}</span>
+    <span *ngIf="(this.user$ | async)?.valid">{{ (this.user$ | async)?.fullname }} - <a href="" (click)="logOff()">Cerrar sesi&oacute;n</a></span>
   </div>
 </ng-template>

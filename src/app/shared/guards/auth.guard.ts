@@ -36,17 +36,13 @@ export class AuthGuard implements CanActivate {
    * @returns Verdadero si el usuario tiene el permiso sobre el componente, de lo contrario redirecciona
    * a la pantalla de bienvenida
    */
-  public async canActivate(): Promise<boolean> {
-    return this.facade.user$()
-      .pipe(
-        first(),
-        map((response) => response.valid || false),
-        tap((isValid) => {
-          if (!isValid) {
-            this.router.navigate(['']);
-          }
-        }),
-      )
-      .toPromise();
+  public canActivate(): boolean {
+    const isValid = this.facade.user().valid || false;
+
+    if (!isValid) {
+      this.router.navigate(['']);
+    }
+
+    return isValid;
   }
 }

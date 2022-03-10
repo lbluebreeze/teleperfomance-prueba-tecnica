@@ -59,4 +59,12 @@ export class NavbarComponent {
     this.hideMenuControl = true;
     this.router.navigate([path]);
   }
+
+  /**
+   * Método encargado de eliminar el usuario logueado
+   */
+  public logOff(): void {
+    this.facade.setUser({});
+    this.onNavigate('');
+  }
 }

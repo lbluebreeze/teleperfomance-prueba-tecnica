@@ -22,7 +22,7 @@
         <button mat-icon-button class="color-primary" matTooltip="Editar" (click)="onEdit(user)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button class="color-danger" matTooltip="Eliminar" (click)="onDelete(user)">
+        <button mat-icon-button class="color-danger" matTooltip="Eliminar" *ngIf="appFacade.user().id !== user.id" (click)="onDelete(user)">
           <mat-icon>delete</mat-icon>
         </button>
       </td>

@@ -44,8 +44,6 @@ import { HobbyApiService } from 'src/app/services/hobby/hobby.api.service';
   providers: [
     UserFacade,
     UserState,
-    AppFacade,
-    AppState,
     HobbyApiService,
   ],
 })

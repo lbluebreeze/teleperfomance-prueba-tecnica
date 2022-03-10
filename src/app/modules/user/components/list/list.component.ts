@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { AppFacade } from 'src/app/core/app.facade';
 import { UserDto } from 'src/app/models/user.dto';
 import { UserFacade } from '../../facade/user.facade';
 
@@ -31,21 +32,26 @@ export class ListComponent implements OnInit, OnDestroy {
    */
   public readonly facade: UserFacade;
   /**
+   * Clase que administra la comunicación entre los servicios y el estado
+   */
+  public readonly appFacade: AppFacade;
+  /**
    * Columnas a mostrar en la tabla de registros
    */
   public readonly columnsToDisplay = ['id', 'username', 'fullname', 'phone', 'creationDate', 'idCreatorUser'];
   /**
-   * Observable con una lista de usuarios
+   * Lista de usuarios
    */
   public users: UserDto[] = [];
 
   /**
    * Crea una nueva instancia de @see ListComponent
    */
-  public constructor(router: Router, activatedRoute: ActivatedRoute, facade: UserFacade) {
+  public constructor(router: Router, activatedRoute: ActivatedRoute, facade: UserFacade, appFacade: AppFacade) {
     this.router = router;
     this.activatedRoute = activatedRoute;
     this.facade = facade;
+    this.appFacade = appFacade;
 
     facade.users$()
       .pipe(takeUntil(this.destroy$))

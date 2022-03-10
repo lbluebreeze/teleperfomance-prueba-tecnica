@@ -64,7 +64,10 @@ export class AppFacade {
           this.sendError('No se encontró un usuario con las credenciales especificadas');
         }
       },
-      () => this.sendError('Hubo un problema al autenticar el usuario'),
+      () => {
+        this.setLoading(false);
+        this.sendError('Hubo un problema al autenticar el usuario');
+      },
       () => this.setLoading(false),
     );
   }

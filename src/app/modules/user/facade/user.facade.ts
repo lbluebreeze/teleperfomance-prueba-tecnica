@@ -72,7 +72,10 @@ export class UserFacade implements OnDestroy {
         (response) => {
           this.setUsers(response);
         },
-        () => this.appFacade.sendError('Hubo un problema al consultar los usuarios'),
+        () => {
+          this.appFacade.setLoading(false);
+          this.appFacade.sendError('Hubo un problema al consultar los usuarios');
+        },
         () => this.appFacade.setLoading(false)
       );
   }
@@ -116,10 +119,14 @@ export class UserFacade implements OnDestroy {
           if (response > 0) {
             fn();
           } else {
+            this.appFacade.setLoading(false);
             this.appFacade.sendError('Hubo un problema al crear el usuario');
           }
         },
-        () => this.appFacade.sendError('Hubo un problema al crear el usuario'),
+        () => {
+          this.appFacade.setLoading(false);
+          this.appFacade.sendError('Hubo un problema al crear el usuario');
+        },
         () => this.appFacade.setLoading(false)
       );
   }
@@ -135,12 +142,20 @@ export class UserFacade implements OnDestroy {
       .subscribe(
         (response) => {
           if (response) {
+            if (data.id === this.appFacade.user().id) {
+              data.valid = true;
+              this.appFacade.setUser(data);
+            }
             fn();
           } else {
+            this.appFacade.setLoading(false);
             this.appFacade.sendError('Hubo un problema al actualizar el usuario');
           }
         },
-        () => this.appFacade.sendError('Hubo un problema al actualizar el usuario'),
+        () => {
+          this.appFacade.setLoading(false);
+          this.appFacade.sendError('Hubo un problema al actualizar el usuario');
+        },
         () => this.appFacade.setLoading(false)
       );
   }
@@ -170,11 +185,16 @@ export class UserFacade implements OnDestroy {
    * Método encargado de obtener los hobbies
    */
   public allHobbies(): void {
+    this.appFacade.setLoading(true);
     this.hobbyService.all()
       .pipe(first())
       .subscribe(
         (response) => this.state.setHobbies(response),
-        () => this.appFacade.sendError('Hubo un problema al obtener los hobbies'),
+        () => {
+          this.appFacade.setLoading(false);
+          this.appFacade.sendError('Hubo un problema al obtener los hobbies');
+        },
+        () => this.appFacade.setLoading(false),
       );
   }
 

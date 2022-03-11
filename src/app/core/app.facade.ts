@@ -82,7 +82,7 @@ export class AppFacade {
 
   /**
    * Método encargado de almacenar un error en el estado
-   * @param data Información del error
+   * @param message Mensaje del error
    */
   public sendError(message: string): void {
     const error: ErrorModel = {

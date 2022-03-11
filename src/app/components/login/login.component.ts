@@ -49,6 +49,10 @@ export class LoginComponent implements OnInit {
   public ngOnInit(): void {
   }
 
+  /**
+   * Método llamado por el evento submit del formulario.
+   * Se encarga de validar y realizar el login del usuario
+   */
   public onSubmit(): void {
     this.formGroup.markAllAsTouched();
 
